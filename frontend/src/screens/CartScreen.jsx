@@ -5,7 +5,6 @@ import { Row, Col, ListGroup, Image } from "react-bootstrap";
 import { Form, Button, Card } from "react-bootstrap";
 import { addToCart, removeFromCart } from "actions/cartActions";
 import Message from "components/Message";
-import Loader from "components/Loader";
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
