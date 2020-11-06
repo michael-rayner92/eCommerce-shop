@@ -12,8 +12,11 @@ import {
   USER_DETAILS_FAIL,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
-  USER_UPDATE_PROFILE_FAIL
+  USER_UPDATE_PROFILE_FAIL,
+  USER_DETAILS_RESET
 } from "constants/userConstants";
+import { ORDER_LIST_MY_RESET } from "constants/orderConstants";
+import getErrResponse from "./getErrResponse";
 
 export const login = (email, password) => async dispatch => {
   try {
@@ -38,10 +41,7 @@ export const login = (email, password) => async dispatch => {
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
+      payload: getErrResponse(error)
     });
   }
 };
@@ -50,6 +50,8 @@ export const logout = () => async dispatch => {
   localStorage.removeItem("userInfo");
 
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: ORDER_LIST_MY_RESET });
 };
 
 export const register = (name, email, password) => async dispatch => {
@@ -80,10 +82,7 @@ export const register = (name, email, password) => async dispatch => {
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
+      payload: getErrResponse(error)
     });
   }
 };
@@ -109,10 +108,7 @@ export const getUserDetails = id => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
+      payload: getErrResponse(error)
     });
   }
 };
@@ -150,10 +146,7 @@ export const updateUserProfile = user => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
+      payload: getErrResponse(error)
     });
   }
 };

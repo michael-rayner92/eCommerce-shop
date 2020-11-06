@@ -7,6 +7,7 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS
 } from "constants/productConstants";
+import getErrResponse from "./getErrResponse";
 
 export const listProducts = () => async dispatch => {
   try {
@@ -18,13 +19,10 @@ export const listProducts = () => async dispatch => {
       type: PRODUCT_LIST_SUCCESS,
       payload: data
     });
-  } catch (err) {
+  } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
-      payload:
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message
+      payload: getErrResponse(error)
     });
   }
 };
@@ -39,13 +37,10 @@ export const listProductDetails = id => async dispatch => {
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data
     });
-  } catch (err) {
+  } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
-      payload:
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message
+      payload: getErrResponse(error)
     });
   }
 };
