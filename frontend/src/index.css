@@ -20,6 +20,12 @@ h3 {
   margin: 0.1rem;
 }
 
+/* Pagination */
+.pagination {
+  margin: 10px auto 0;
+  justify-content: center;
+}
+
 /* Carousel */
 .carousel-item-next,
 .carousel-item-prev,
@@ -50,9 +56,37 @@ h3 {
   display: flex;
 }
 
+@media (min-width: 991px) {
+  .navbar .form-inline input {
+    margin-left: 10px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar .form-inline {
+    margin-bottom: 10px;
+  }
+
+  .navbar .form-inline input {
+    margin-left: 0 !important;
+  }
+}
+
 @media (max-width: 767px) {
   .carousel-caption h2 {
     font-size: 3vmin;
     line-height: 3.6vmin;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar .form-inline {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 10px;
+  }
+  .navbar .form-inline input {
+    max-width: 300px;
+    margin-right: 10px;
   }
 }
