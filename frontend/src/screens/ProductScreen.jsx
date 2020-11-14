@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Meta from "components/Meta";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -72,6 +73,10 @@ const ProductScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta
+            title={`${product.name} | ProShop`}
+            description={product.description}
+          />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
